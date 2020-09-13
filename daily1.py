@@ -4,7 +4,7 @@
 #List - ordered collection of items, mutable(changeable) : [square ]
 list1 = [1,2,3,4,5,'a','Dhiraj',"Upadhyaya",True]  #list type of object with data
 list1  #print when through spyder
-type(list1)  #type of object
+    type(list1)  #type of object
 print(list1)  #print when running complete file
 list1
 sorted([1,5,3,2,4,5,324,43,4,4,3,23,434,53442,244,2245224,523])
@@ -154,12 +154,14 @@ numpy.array([list1])
 import numpy as np #np is alias
 np1 = np.arange(1,10)
 np1
-
+np.arange?
 x=np.arange(start=1,stop=1000000,step=2)
+x
 len(x)
 x[1:100]
 x[1:50:10]
-np
+np?
+np.mean(x)
 np.mean(np.arange(1,10000000))
 np1
 type(np1)
@@ -171,12 +173,15 @@ np.mean?  # help on mean function of numpy
 np2 = np.array([ 90, 50, 60, 70 ])
 np2
 np.sort(np2)
+np.sort?
+
 dir(np)
 
 np3 = np.array([[1,4],[3,1],[5,6],[10,50]])
 np3
 np3.shape
-
+np4=np.array([['a','b'],['c','d'],['e','f'],['g','h']])
+np4
 np3.reshape((-1,1))  #1 column from 2 column
 
 #http://cs231n.github.io/python-numpy-tutorial/
@@ -191,6 +196,7 @@ dir(pd)
 df1 = pd.DataFrame({'rollno':[1,2,3,4], 'name': [ "Dhiraj", "Kounal", "Akhil", "Pooja" ], 'marks':[ 40, 50, 60.5, 70 ], 'gender':['M', 'M','M', 'F']})
 df1
 type(df1) 
+
 
 df1.columns  #columnanes
 df1.index  #row ids/ names  - here auto created
@@ -257,7 +263,7 @@ data2a
 data2a = pd.read_csv('mtcars.csv') #when csv is in project folder
 data2a
 data2b
-data2b = pd.read_csv('E:/analytics/projects/pyanalytics/mtcars.csv')
+data2b = pd.read_csv('E:/analytics/projects/pyAnalytics/mtcars.csv')
 data2b
 #csv in any other location - full path
 data2b
