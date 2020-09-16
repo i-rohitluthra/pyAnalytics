@@ -6,5 +6,5 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
-recent_files = ['file1.py', 'file2.py', 'daily1.py', 'daily2.py']
+recent_files = ['Assn2A_denco.py', 'case3B_denco.py', 'DT01_simple.py', 'DT00_main.py', 'DT03_iris.py']
 

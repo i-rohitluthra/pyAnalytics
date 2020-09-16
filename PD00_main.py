@@ -104,12 +104,12 @@ mtcarsDF
 #condition
 mtcarsDF['gear'] == 3  #T&F
 mtcars[mtcarsDF['gear'] == 3]  #rows with T for gear=3
-mtcars[mtcarsDF['gear'] != 3, ['gear','am']]
+#mtcars[mtcarsDF['gear'] != 3].iloc['gear','am']
 
 #another way
 mtcarsDF[mtcarsDF.gear.eq(3)]  #chaining method
 
-mtcarsDF[mtcarsDF['gear'] == 3 & mtcarsDF['am']== 0]
+#mtcarsDF[mtcarsDF['gear'] == 3 & mtcarsDF['am']== 0] #some error
 
 mtcarsDF.gear.unique()
 mtcarsDF.carb.unique()
@@ -154,13 +154,16 @@ mtcarsDF.describe()  # default only numeric
 #%% sort
 mtcarsDF.sort_values(by='gear', axis=0)
 mtcarsDF.sort_values(by=['gear', 'mpg'])
-
+mtcarsDF.sort_values(by=['gear', 'mpg'],ascending=[True, False])
 
 
 
 
 #%%% groupby
 mtcarsDF.describe()
+mtcarsDF['carnames']=mtcarsDF.index
+mtcarsDF.head()
+
 mtcarsDF.groupby('gear')
 mtcarsDF.groupby(['gear'])
 mtcarsDF.groupby(['gear']).groups.keys()
