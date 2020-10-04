@@ -32,12 +32,12 @@ plt.show();
 data.dtypes
 data.isnull().any()
 data.isnull().any(axis=1)
-data.index[data.isnull().any(axis=1)]
+data.index[data.isnull().any(axis=1)] #informing about the rows which had even one missing value
 data.iloc[6]  #see the null values
 data.isnull().sum().sum()  #75 missing values 
 data.isnull().sum(axis=0)  #columns missing
 data.isnull().sum(axis=1)
-data1 = data.dropna()
+data1 = data.dropna() #dropping rows which have missing values
 
 data1.isnull().any()
 data1.isnull().sum().sum()
@@ -48,17 +48,18 @@ from sklearn.preprocessing import StandardScaler
 scalar = StandardScaler()
 data2_scaled = scalar.fit_transform(data2)
 
-data2_scaled.describe() #it converts to different format
+type(data2_scaled)
+#data2_scaled.describe() #it converts to different format
 pd.DataFrame(data2_scaled).describe()
 
 #kmeans
 from sklearn.cluster import KMeans
-kmeans = KMeans(n_clusters=2)  #hyper parameters
+kmeans = KMeans(n_clusters=3)  #hyper parameters
 
 kmeans.fit(data2_scaled)
 kmeans.inertia_  #sum of sq distances of samples to their centeroid
-kmeans.cluster_centers_
-kmeans.labels_
+kmeans.cluster_centers_ #prints the two cluster centers mean with the mean values for all parameters
+kmeans.labels_ #informs which row has gone in which cluster
 kmeans.n_iter_  #iterations to stabilise the clusters
 kmeans.predict(data2_scaled)
 
@@ -72,7 +73,7 @@ NCOLS
 clusterNos = kmeans.labels_
 clusterNos
 type(clusterNos)
-
+data2
 data2.groupby([clusterNos]).mean()
 pd.options.display.max_columns =None
 data2.groupby([clusterNos]).mean()
@@ -86,7 +87,7 @@ plt.scatter(data2.ApplicantIncome, data2.Loan_Amount_Term, c=clusterNos) #better
 #hierarchical clustering
 import scipy.cluster.hierarchy as shc
 dend = shc.dendrogram(shc.linkage(data2_scaled, method='ward'))
-
+#data2_scaled
 plt.figure(figsize = (10,7))
 plt.title("Dendrogram")
 dend = shc.dendrogram(shc.linkage(data2_scaled, method='ward'))
@@ -95,7 +96,7 @@ plt.show();
 
 #another method for Hcluster from sklearn
 from sklearn.cluster import AgglomerativeClustering
-aggCluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='ward')
+aggCluster = AgglomerativeClustering(n_clusters=3, affinity='euclidean', linkage='ward')
 aggCluster.fit_predict(data2_scaled)
 aggCluster
 aggCluster.labels_
@@ -105,7 +106,15 @@ compare = pd.DataFrame({'kmCluster': kmeans.labels_, 'HCaggl': aggCluster.labels
 compare
 compare.Diff.sum()
 compare.kmCluster.value_counts()
-compare.HCaggl.value_counts()
+compare.HCaggl.value_counts()   
 
+#aggregate value of the clusters
+clusterNo2 = aggCluster.labels_
+clusterNo2
+type(clusterNo2)
+data2
+data2.groupby([clusterNo2]).mean()
+
+data2.groupby([clusterNos]).mean()
 #Customer Segmentation
 #Product Segmentation

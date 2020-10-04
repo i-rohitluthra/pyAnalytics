@@ -4,20 +4,20 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from pydataset import data
-import seaborn as sns
+from pydataset import data #mtcars dataset is available in this data set
+import seaborn as sns #enhances matplot
 df = data('mtcars')
 df.head()
 #from sklearn.tree import DecisionTreeClassifier, export_graphviz
 from sklearn.model_selection import train_test_split
-from sklearn import metrics, tree
+from sklearn import metrics, tree #sklearn- machine learning in python
 df['am'].value_counts()
 df.columns
 
 #classification
 #predict if transmission of car is 0 or 1 on basis of mpg, hp, wt
 X1 = df[['mpg','hp','wt']]
-Y1 = df[['am']]
+Y1 = df['am']
 Y1.value_counts()
 
 #for splitting into train and test 
@@ -30,7 +30,7 @@ X1_test.shape
 from sklearn.tree import DecisionTreeClassifier
 clsModel = DecisionTreeClassifier()  #model with parameter
 clsModel.fit(X1_train, Y1_train)
-ypred1 = clsModel.predict(X1_test)
+ypred1 = clsModel.predict(X1_test) #get some values of y based on our test data of X1
 len(ypred1)
 ypred1
 Y1_test
@@ -50,10 +50,6 @@ fig = plt.figure(figsize=(30,20))
 tree.plot_tree(clsModel,  feature_names=['mpg','hp','wt'],   class_names= ['auto(0)','manual(1)'],  filled=True, node_ids=True)  
 plt.show();
 #(The plot_tree returns annotations for the plot, to not show them in the notebook I assigned returned value to _.)
-_ = tree.plot_tree(clsModel,  feature_names=['mpg','hp','wt'],   class_names= ['am'],  filled=True)  
-
-#To save the figure to the .png file:
-fig.savefig("classtreee.png")
 
 
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
@@ -103,7 +99,6 @@ Y2_train[X2_train['hp'] <= 177.5].agg({'mpg':np.mean, 'mpg':'count'})
 
 #depthwise
 tree.plot_tree(regrModel, feature_names=['am','hp','wt'], filled=True, max_depth=0, proportion=True, node_ids=True, fontsize=10)
-
 tree.plot_tree?
 #https://scikit-learn.org/stable/modules/generated/sklearn.tree.plot_tree.html
 
@@ -121,6 +116,7 @@ df2['ypred2'] = ypred2
 df2
 df2['mpg'].values
 #Root Mean Squared Error (RMSE)
+from sklearn import metrics
 np.sqrt(metrics.mean_squared_error(y_true=Y2_test, y_pred=ypred2))
 np.sqrt(metrics.mean_squared_error(y_true=df2['mpg'].values, y_pred=df2['ypred2'].values))
 #predict for unknown data

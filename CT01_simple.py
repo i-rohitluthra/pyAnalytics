@@ -18,9 +18,11 @@ from sklearn.preprocessing import StandardScaler
 features, true_labels = make_blobs( n_samples=200, centers=3, cluster_std=2.75, random_state=42)
 features[:5]
 features.shape
+
 true_labels[:5]
 
 #need for scaling : height & weight are in different scales
+
 scaler = StandardScaler()
 scaled_features = scaler.fit_transform(features)
 scaled_features[:5]  #values between -3 to +3
